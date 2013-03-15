@@ -22,9 +22,15 @@ $eventfulApi = new EventfulApi($apiKey);
 
 // Attempt to search for events in Los Angeles, CA
 $args = array(
-   'location' => 'Los Angeles, CA'
+   'q' => 'music',
+   'l' => 'Los Angeles, CA'
 );
-$response = $eventfulApi->call('events/search', $args);
-
-// Output the response 
-var_dump($response);
+$isSuccessful = $eventfulApi->call('events/search', $args);
+if ($isSuccessful)
+{
+   // Output the response as a string
+   echo $eventfulApi->getResponseAsString();
+   
+   // Output the response as an array
+   var_dump($eventfulApi->getResponseAsArray());
+}

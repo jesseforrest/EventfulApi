@@ -7,10 +7,11 @@ A PHP class to help communicate with the Eventful REST API.
 Example - Basic Usage
 ---------------------
 
-This example will show how to connect to make a basic event search request
+This example will show how to make a basic event search request
 from the Eventful REST API using the EventfulApi class.
 
 ```php 
+<?php
 require_once 'EventfulApi.php';
 
 // Define your Eventful API key (Eventful must provide you with a key)

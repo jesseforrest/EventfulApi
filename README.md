@@ -15,7 +15,7 @@ from the Eventful REST API using the EventfulApi class.
 require_once 'EventfulApi.php';
 
 // Define your Eventful API key (Eventful must provide you with a key)
-$apiKey = 'nZXRXNPDLjQMxb7w';
+$apiKey = 'aBcDXNPDLjQMxb7w';
 
 // Create an instance
 $eventfulApi = new EventfulApi($apiKey);

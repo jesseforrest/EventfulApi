@@ -131,12 +131,20 @@ class EventfulApi
 
       // Call login to receive a nonce (an arbitrary number used only one time)
       // The nonce is stored in an error structure.
-      $response = $this->call('users/login');
-      if (!$response)
+      $isSuccess = $this->call('users/login');
+      if (!$isSuccess)
       {
          return false;
       }
       
+      // Get response
+      $response = $this->getResponseAsArray();
+      if (!isset($response['nonce']))
+      {
+         return false;
+      }
+      
+      // Get nonce
       $nonce = $response['nonce'];
 
       // Generate the digested password response.
@@ -147,14 +155,21 @@ class EventfulApi
          'nonce' => $nonce,
          'response' => $passwordResponse,
       );
-      $response = $this->call('users/login', $args);
-      if (!$response)
+      $isSuccess = $this->call('users/login', $args);
+      if (!$isSuccess)
+      {
+         return false;
+      }
+      
+      // Get response
+      $response = $this->getResponseAsArray();
+      if (!isset($response['user_key']))
       {
          return false;
       }
 
-      // Store the provided userKey.
-      $this->userKey = (string) $response->userKey;
+      // Store the provided user key
+      $this->userKey = (string) $response['user_key'];
 
       return true;
    }

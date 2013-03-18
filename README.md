@@ -22,8 +22,8 @@ $eventfulApi = new EventfulApi($apiKey);
 
 // Attempt to search for events in Los Angeles, CA
 $args = array(
-   'q' => 'music',
-   'l' => 'Los Angeles, CA'
+   'keywords' => 'music',
+   'location' => 'Los Angeles, CA'
 );
 $isSuccessful = $eventfulApi->call('events/search', $args);
 if ($isSuccessful)
